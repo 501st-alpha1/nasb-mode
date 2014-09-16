@@ -18,6 +18,8 @@
 
 (defun nasb-mode()
   (interactive)
+  (unless nasb-location
+    (error "nasb-location is not defined."))
   (when nasb-location
     (find-file nasb-location)
     (read-only-mode)))
