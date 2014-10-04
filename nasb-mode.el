@@ -23,3 +23,5 @@
   (when nasb-location
     (find-file nasb-location)
     (read-only-mode)))
+
+(provide 'nasb-mode)
