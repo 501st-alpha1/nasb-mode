@@ -22,6 +22,7 @@
     (error "nasb-location is not defined."))
   (when nasb-location
     (find-file nasb-location)
-    (read-only-mode)))
+    (read-only-mode)
+    (rename-buffer "*NASB*")))
 
 (provide 'nasb-mode)
