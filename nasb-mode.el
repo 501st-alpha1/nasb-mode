@@ -20,9 +20,11 @@
   (interactive)
   (unless nasb-location
     (error "nasb-location is not defined."))
-  (when nasb-location
-    (find-file nasb-location)
-    (read-only-mode)
-    (rename-buffer "*NASB*")))
+  (if (get-buffer "*NASB*")
+      (switch-to-buffer "*NASB*")
+    (when nasb-location
+      (find-file nasb-location)
+      (read-only-mode)
+      (rename-buffer "*NASB*"))))
 
 (provide 'nasb-mode)
