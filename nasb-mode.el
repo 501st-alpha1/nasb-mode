@@ -16,7 +16,15 @@
 
 (defvar nasb-location nil)
 
-(defun nasb-mode()
+(setq nasb-keywords
+      '(("\nGen \\|\nEx \\|\nLev \\|\nNum \\|\nDeut \\|\nJosh \\|\nJudg \\|\nRuth \\|\n1 Sam \\|\n2 Sam \\|\n1 Kin \\|\n2 Kin \\|\n1 Chr \\|\n2 Chr \\|\nEzra \\|\nNeh \\|\nEsth \\|\nJob \\|\nPs \\|\nProv \\|\nEccl \\|\nSong \\|\nIs \\|\nJer \\|\nLam \\|\nEzek \\|\nDan \\|\nHos \\|\nJoel \\|\nAmos \\|\nJon \\|\nMic \\|\nNah \\|\nHab \\|\nZeph \\|\nHag \\|\nZech \\|\nMal \\|\nMatt \\|\nMark \\|\nLuke \\|\nJohn \\|\nActs \\|\nRom \\|\n1 Cor \\|\n2 Cor \\|\nGal \\|\nEph \\|\nPhil \\|\nCol \\|\n1 Thess \\|\n2 Thess \\|\n1 Tim \\|\n2 Tim \\|\nTitus \\|\nPhilem \\|\nHeb \\|\nJames \\|\n1 Pet \\|\n2 Pet \\|\n1 John \\|\n2 John \\|\n3 John \\|\nJude \\|\nRev" . font-lock-keyword-face)
+))
+
+(define-derived-mode nasb-mode fundamental-mode
+  (setq font-lock-defaults '(nasb-keywords))
+  (setq mode-name "nasb"))
+
+(defun nasb()
   (interactive)
   (unless nasb-location
     (error "nasb-location is not defined."))
@@ -25,6 +33,7 @@
     (when nasb-location
       (find-file nasb-location)
       (read-only-mode)
+      (nasb-mode)
       (rename-buffer "*NASB*"))))
 
 (provide 'nasb-mode)
